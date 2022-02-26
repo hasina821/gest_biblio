@@ -11,7 +11,6 @@
           <table class="table mt-4">
                <thead class='bg-primary'>
                <tr>
-                    <th scope="col">ID</th>
                     <th scope="col">Num_lecteur</th>
                     <th scope="col">Num_livre</th>
                     <th scope="col">Date_pret</th>
@@ -24,26 +23,23 @@
                <tbody class='bg-dark text-white'>
                
                     <?php
-                    /*
-                         while($post = $listclients->fetch()) {
+                         while($pret = $list->fetch()) {
                               
                          echo <<<CLIENT
                               <tr>
-                              <th scope="row">{$post['id']}</th>
-                              <td>{$post['nom']}</td>
-                              <td>{$post['prenom']}</td>
-                              <td>{$post['datenais']}</td>
-                              <td>{$post['solde']}</td>
+                              <td>{$pret['id_lecteur']}</td>
+                              <td>{$pret['id_livre']}</td>
+                              <td>{$pret['date_pret']}</td>
+                              <td>{$pret['date_retour']}</td>
                               <td>
-                                   <button type="button" class="btn btn-warning"><a href="index.php?action=update&id={$post['id']}" class="text-light">Modifier</a></button>
+                                   <button type="button" class="btn btn-warning"><a href="index.php?action=update&id={$pret['id']}" class="text-light">Modifier</a></button>
                               </td>
                               <td>
-                                   <button type="button" class="btn btn-danger"><a href="index.php?action=delete&id={$post['id']}" class="text-light">Supprimer</a></button>
+                                   <button type="button" class="btn btn-danger"><a href="index.php?action=delete&id={$pret['id']}" class="text-light">Supprimer</a></button>
                               </td>
                               </tr>
                          CLIENT;
                          }
-                    */
                     ?>
                </tbody>
           </table>

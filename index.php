@@ -67,6 +67,14 @@ try
                             throw new Exception("Il faut bien remplir tous les champs");
                         }
                         break;
+                    case 'pret':
+                        if(!empty($_POST['id_lecteur']) AND !empty($_POST['id_livre']) AND !empty($_POST['date_pret']) AND !empty($_POST['date_retour'])){
+                            addPret($_POST['id_lecteur'],$_POST['id_livre'],$_POST['date_pret'],$_POST['date_retour']);
+                        }else{
+                            throw new Exception("Il faut bien remplir tous les champs");
+                            
+                        }
+                        break;
                     default:
                          header('Location:view/addreservation.php');
                          break;

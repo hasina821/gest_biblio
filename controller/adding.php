@@ -49,7 +49,7 @@ function addpretfield(){
      $lecteur=new LecteurManager();
      $listlecteur=$lecteur->getsLecteur();
      
-     header('Location:view/addpret.php');
+     require('view/addpret.php');
 }
 
 
