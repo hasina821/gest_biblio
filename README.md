@@ -1,2 +1,2 @@
 # gest_biblio
-un application web pour gérer une bibliothèque(prêt  gestion de livre)
+un application pour gérer une bibliothèque(prêt  gestion de livre)
