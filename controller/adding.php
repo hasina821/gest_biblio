@@ -1,7 +1,7 @@
 <?php
-require('model/lecteurManager.php');
-require('model/pretManager.php');
-require('model/livreManager.php');
+require_once('model/lecteurManager.php');
+require_once('model/livreManager.php');
+require_once('model/pretManager.php');
 
 
 /*-------------------lecteur----------------------------------- */
@@ -15,8 +15,8 @@ function addLecteur($nom,$prenom){
           header('Location:index.php?action=view/lecteurs');
      }
 }
-function addvoyageurfield(){
-     header('Location:view/addlecteur.php');
+function addlecteurfield(){
+     require('view/addlecteur.php');
 }
 
 /*---------------------------------------------livre--------------------------------------------------- */
@@ -26,21 +26,44 @@ function addLivre($designation,$titre,$auteur,$date_edition){
      if($isposted===false){
           throw new Exception("Errer while posting livre");
      }else{
-          header('Location:index.php?action=view/livres');
+          Header('Location:index.php?action=view/livres');
      }
 }
 function addlivrefield(){
-     header('Location:view/addlivre.php');
+     require('view/addlivre.php');
 }
 
 /*-----------------------------------------------pret--------------------------------------------------------*/
-function addPret($id_lecteur,$id_livre,$date_pret,$date_retour){
+function addPret($id_lecteur,$id_livre,$date_retour){
      $pret=new PretManager();
-     $isposted=$pret->addPret($id_lecteur,$id_livre,$date_pret,$date_retour);
-     if($isposted===false){
+     $livre=new LivreManager();
+     $lecteur=new LecteurManager();
+
+     $lect=$lecteur->getLecteur($id_lecteur);
+     if(empty($lect)){
+          throw new Exception("Ce lecteur n'est pas adherant");
+     }
+     $liv=$livre->getLivre($id_livre);
+     $dis=0;
+     if($liv['nbfoisprete']===NULL){
+          $nb=0;
+          $isupdated=$livre->updateNbfois($nb,$dis,$id_livre);
+     }else{
+          $nb=$liv['nbfoisprete']+1;
+          $isupdated=$livre->updateNbfois($nb,$dis,$id_livre);
+     }
+
+     if($liv['disponibilite']==0){
+          throw new Exception("Le livre n'est pas disponible");
+          
+     }else{
+          $isposted=$pret->addPret($id_lecteur,$id_livre,$date_retour);
+     }
+
+     if(!$isposted AND !$isupdated){
           throw new Exception("Errer while posting pret");
      }else{
-          header('Location:index.php?action=view/prets');
+          Header('Location:index.php?action=view/prets');
      }
 }
 function addpretfield(){

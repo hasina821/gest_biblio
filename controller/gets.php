@@ -1,7 +1,7 @@
 <?php
-require('model/lecteurManager.php');
-require('model/livreManager.php');
-require('model/pretManager.php');
+require_once('model/lecteurManager.php');
+require_once('model/livreManager.php');
+require_once('model/pretManager.php');
 /*------------------------------lecteur----------------------------------------------------------------------*/
 function listLecteur(){
      $lecteurs=new LecteurManager();
@@ -27,5 +27,19 @@ function listPret(){
      $list=$prets->getsPret();
 
      require('view/pretview.php');
+}
+function situationLivre(){
+     $livre=new LivreManager();
+     $list=$livre->getsLivre();
+     require('view/situationlivre.php');
+}
 
+/*----------------------------------listepret------------------------------------------- */
+
+function listePret($id){
+     $lecteur=new LecteurManager();
+     $lect=$lecteur->getLecteur($id);
+
+     $list=$lecteur->getListpret($id);
+     require('view/listpretview.php');
 }

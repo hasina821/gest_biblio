@@ -1,40 +1,22 @@
-<!Doctype html>
-<html>
-     <head>
-          <meta charset="utf-8">
-          <link rel="stylesheet" href="assets/css/bootstrap.css">
-     </head>
-     <body>              
-          <div class="container mt-4">
-          <h2 class="text-primary">Ajouter un nouveau pret</h2>
-          <form method="post" action='index.php?action=posting/pret'>
-               <div class="form-group">
-                    <label for="id_l">Nom du lecteur:</label>
-                    <select class="form-select" name="id_lecteur" id="id_l">
-                         <?php
-                         while($lect=$listlecteur->fetch()){
-                         echo <<<OPTION
-                              <option value={$lect['id']}>{$lect['nom']} {$lect['prenom']}</option>
-                              OPTION;
-                         }
-                         ?>
-                    </select>
-               </div>
-               <div class="form-group">
-               <label for="solde">Numero du Livre:</label>
-                         <input type="number"  name="id_livre" class="form-control" id="travail">
-               </div>
-               <div class="form-group">
-                         <label for="date_pret">Date_pret:</label>
-                         <input type="text"  name="date_pret" class="form-control" id="date_pret" placeholder="YY-MM-DD">
-               </div>
-               <div class="form-group">
-                         <label for="date_retour">Date_retour:</label>
-                         <input type="text"  name="date_retour" class="form-control" id="date_retour" placeholder="YY-MM-DD">
-               </div>  
-               <button type="submit" class="btn btn-primary mt-4" name="submit">Ajouter</button>
-          </form> 
+<?php $title="AJOUTER_PRET" ?>
+<?php ob_start();?>
+          <div class="mx-auto col-10 bg-dark container" id="main" style="opacity: 0.9;">
+               <form class="w-25 mx-auto mt-5" method="post" action="index.php?action=posting/pret" >
+                    <div class="form-group">
+                         <label for="Numero lecteur">Numéro lecteur</label>
+                         <input name='id_lecteur' type="text" class="form-control"  placeholder="Numéro lecteur">
+                    </div>
+                    <div class="form-group">
+                         <label for="Numero_livre">Numéro livre</label>
+                         <input name='id_livre' type="text" class="form-control" placeholder="Numéro livre">
+                    </div>
+                    <div class="form-group">
+                         <label for="DateR">Dates de retour</label>
+                         <input name='date_retour' type="text" class="form-control" placeholder="YY-MM-DD">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 25px;margin-bottom:20px ;float:right;">Ajouter</button>
+               </form>
           </div>
-          
-     </body>
-</html>
+     </div>
+<?php $content=ob_get_clean();?>
+<?php require('template.php');?>

@@ -1,21 +1,21 @@
 <?php $title="Ajouter_lecteur";?>
 <?php ob_start();?>
           <div class="mx-auto col-10 bg-dark container" id="main" style="opacity: 0.9;">
-               <form class="w-25 mx-auto mt-5 " action="index.php?action=posting/lecteur" method="post">
+               <form class="w-25 mx-auto mt-5 " action="index.php?action=update/lecteur/<?=$lect['id'];?>" method="post">
                     <div class="form-group">
                          <label for="Numero_livre">Numéro</label>
-                         <input type="text" class="form-control"  placeholder="Numéro lecteur">
+                         <input value=<?=$lect['id'];?> type="text" class="form-control"  placeholder="Numéro lecteur">
                     </div>
                     <div class="form-group">
                          <label for="nom">Nom:</label>
-                         <input type="text"  name="nom" class="form-control" id="nom" placeholder="Nom">
+                         <input value=<?=$lect['nom'];?> type="text"  name="nom" class="form-control" id="nom" placeholder="Nom">
                     </div>
                          <div class="form-group">
                          <label for="prenom">Prenom:</label>
-                         <input type="text"  name="prenom" class="form-control" id="prenom" placeholder="Prenom">
+                         <input value=<?=$lect['prenom'];?> type="text"  name="prenom" class="form-control" id="prenom" placeholder="Prenom">
                     </div>
                     <button type="submit"
-                    name="submit" class="btn btn-primary" style="margin-top: 25px; margin-bottom:20px ; float:right;">Ajouter</button>
+                    name="submit" class="btn btn-primary" style="margin-top: 25px; margin-bottom:20px ; float:right;">Mettre à jour</button>
                </form>
           </div>
      </div>
