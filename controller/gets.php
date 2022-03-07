@@ -43,3 +43,11 @@ function listePret($id){
      $list=$lecteur->getListpret($id);
      require('view/listpretview.php');
 }
+function genPdf($id){
+     $lecteur=new LecteurManager();
+     $lect=$lecteur->getLecteur($id);
+
+     $list=$lecteur->getListpret($id);
+     require('view/genpdf.php');
+}
+

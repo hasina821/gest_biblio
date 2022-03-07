@@ -8,9 +8,6 @@
                 <div class="w-50 sec1">
                 <a href="index.php?action=adding/pret"><h3>Ajouter</h3></a>
                 </div>
-                <div class="w-50 sec1">
-                  <h3>Liste de pret</h3>
-                </div>
             </div>
           <section class="w-100" id="tableau">
             <h2 class="text-dark x">PRET</h2>
@@ -42,7 +39,6 @@
                   <td><button class="btn btn-success">Voir</button></td>
                   <td class="text-center">
                    <a href="index.php?action=updating/pret/{$pret['id']}"> <i class="material-icons" style="font-size:36px;color:rgb(13, 111, 141);cursor: pointer;">mode_edit</i></a>
-                    
                   <a href="index.php?action=delete/pret/{$pret['id']}"><i class="material-icons" style="font-size:36px;color:red;cursor: pointer;">delete</i></a>
                   </td> 
                 </tr>

@@ -33,6 +33,9 @@ try
                     case 'listepret':
                         listePret($url[2]);
                     break;
+                    case 'genpdf':
+                        genPdf($url[2]);
+                        break;
                     default:
                         listLecteur();
                          break;

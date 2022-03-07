@@ -45,7 +45,7 @@ class LecteurManager extends Manager{
      }
      public function getListpret($id){
           $db = $this->dbConnect();
-          $req = $db->prepare('SELECT nom,prenom,designation,auteur,date_edition,date_pret FROM `LECTEUR` INNER JOIN `PRET` ON `LECTEUR`.id=`PRET`.id_lecteur INNER JOIN `LIVRE` ON `LIVRE`.id=`PRET`.id_livre WHERE `LECTEUR`.id=?');
+          $req = $db->prepare('SELECT `LECTEUR`.id,nom,prenom,designation,auteur,date_edition,date_pret FROM `LECTEUR` INNER JOIN `PRET` ON `LECTEUR`.id=`PRET`.id_lecteur INNER JOIN `LIVRE` ON `LIVRE`.id=`PRET`.id_livre WHERE `LECTEUR`.id=?');
           $req->execute(array($id));
           $listpret = $req->fetchAll();
   
