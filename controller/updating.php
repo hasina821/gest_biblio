@@ -5,14 +5,14 @@ require_once('model/pretManager.php');
 
 
 /*------------------------------------------livre------------------------*/
-function getlivreinfo($id){
+function getlivreinfo($numlivre){
      $livre=new LivreManager();
-     $liv=$livre->getLivre($id);
+     $liv=$livre->getLivre($numlivre);
      require('view/livreupdatefield.php');
 }
-function updateLivre($designation,$titre,$auteur,$date_edition,$id){
+function updateLivre($numlivre,$designation,$titre,$auteur,$date_edition,$id){
      $livre=new LivreManager();
-     $isupdated=$livre->updateLivre($designation,$titre,$auteur,$date_edition,$id);
+     $isupdated=$livre->updateLivre($numlivre,$designation,$titre,$auteur,$date_edition,$id);
 
      if(!$isupdated){
           throw new Exception("Error while updating");
@@ -24,16 +24,16 @@ function updateLivre($designation,$titre,$auteur,$date_edition,$id){
 
 
 /*------------------------------------lecteur---------------------------------- */
-function getLecteurinfo($id){
+function getLecteurinfo($numlect){
      $lecteur=new LecteurManager();
-     $lect=$lecteur->getLecteur($id);
+     $lect=$lecteur->getLecteur($numlect);
 
      require('view/lecteurupdatefield.php');
 
 }
-function updateLecteur($nom,$prenom,$id){
+function updateLecteur($numlect,$nom,$prenom,$id){
      $lecteur=new LecteurManager();
-     $isupdated=$lecteur->updateLecteur($nom,$prenom,$id);
+     $isupdated=$lecteur->updateLecteur($numlect,$nom,$prenom,$id);
      if(!$isupdated){
           throw new Exception("Error while updating lecteur");
           
@@ -50,11 +50,26 @@ function getPretinfo($id){
 
      require('view/pretupdatefield.php');
 }
-function updatePret($id_lecteur,$id_livre,$date_pret,$date_retour,$id){
+function updatePret($numlecteur,$numlivre,$date_pret,$date_retour,$id){
      $pret=new PretManager();
-     $isupdated=$pret->updatePret($id_lecteur,$id_livre,$date_pret,$date_retour,$id);
+     $isupdated=$pret->updatePret($numlecteur,$numlivre,$date_pret,$date_retour,$id);
 
      if(!$isupdated){
+          throw new Exception("Error while updating pret");
+          
+     }else{
+          Header('Location:index.php?action=view/prets');
+     }
+}
+function Retour($numlivre,$id){
+     $pret=new PretManager();
+     $livre=new LivreManager();
+     $dispo=1;
+     $isupdatedlivre=$livre->retourlivre($dispo,$numlivre);
+     $ret=0;
+     $isupdated=$pret->retour($ret,$id);
+
+     if(!$isupdated && !$isupdatedlivre){
           throw new Exception("Error while updating pret");
           
      }else{

@@ -6,13 +6,19 @@ require_once('model/pretManager.php');
 
 /*-------------------lecteur----------------------------------- */
 
-function addLecteur($nom,$prenom){
+function addLecteur($numlect,$nom,$prenom){
      $lecteur=new LecteurManager();
-     $isposted=$lecteur->postLecteur($nom,$prenom);
-     if($isposted===false){
-          throw new Exception("Errer while posting lecteur");
+     $isexist=$lecteur->getLecteur($numlect);
+     if(empty($isexist)){
+          $isposted=$lecteur->postLecteur($numlect,$nom,$prenom);
+          if($isposted===false){
+               throw new Exception("Errer while posting lecteur");
+          }else{
+               header('Location:index.php?action=view/lecteurs');
+          }
      }else{
-          header('Location:index.php?action=view/lecteurs');
+          throw new Exception("Le lecteur avec ce numero existe déjà");
+          
      }
 }
 function addlecteurfield(){
@@ -20,46 +26,54 @@ function addlecteurfield(){
 }
 
 /*---------------------------------------------livre--------------------------------------------------- */
-function addLivre($designation,$titre,$auteur,$date_edition){
+function addLivre($numlivre,$designation,$titre,$auteur,$date_edition){
      $livre=new LivreManager();
-     $isposted=$livre->addLivre($designation,$titre,$auteur,$date_edition);
-     if($isposted===false){
-          throw new Exception("Errer while posting livre");
+     $isexist=$livre->getLivre($numlivre);
+     if(empty($isexist)){
+          $isposted=$livre->addLivre($numlivre,$designation,$titre,$auteur,$date_edition);
+          if($isposted===false){
+               throw new Exception("Errer while posting livre");
+          }else{
+               Header('Location:index.php?action=view/livres');
+          }
      }else{
-          Header('Location:index.php?action=view/livres');
+          throw new Exception("Le livre evec ce numero existe déjà");
+          
      }
+     
 }
 function addlivrefield(){
      require('view/addlivre.php');
 }
 
 /*-----------------------------------------------pret--------------------------------------------------------*/
-function addPret($id_lecteur,$id_livre,$date_retour){
+function addPret($numlecteur,$numlivre,$date_retour){
      $pret=new PretManager();
      $livre=new LivreManager();
      $lecteur=new LecteurManager();
+     $listpret=$pret->getlecteurpret($numlecteur);
 
-     $lect=$lecteur->getLecteur($id_lecteur);
+     $lect=$lecteur->getLecteur($numlecteur);
      if(empty($lect)){
           throw new Exception("Ce lecteur n'est pas adherant");
-     }
-     $liv=$livre->getLivre($id_livre);
-     $dis=0;
-     if($liv['nbfoisprete']===NULL){
-          $nb=0;
-          $isupdated=$livre->updateNbfois($nb,$dis,$id_livre);
+     }elseif(count($listpret)>=3){
+          throw new Exception("Le lecteur a dejà preté 3 livre");
      }else{
-          $nb=$liv['nbfoisprete']+1;
-          $isupdated=$livre->updateNbfois($nb,$dis,$id_livre);
-     }
 
-     if($liv['disponibilite']==0){
-          throw new Exception("Le livre n'est pas disponible");
-          
-     }else{
-          $isposted=$pret->addPret($id_lecteur,$id_livre,$date_retour);
+          $liv=$livre->getLivre($numlivre);
+          $dis=0;
+          if(empty($liv) || $liv['disponibilite']==0){
+               throw new Exception("Le livre n'est pas disponible");
+               
+          }else{
+               $isposted=$pret->addPret($numlecteur,$numlivre,$date_retour);
+               if(!empty($liv)){
+                    $nb=$liv['nbfoisprete']+1;
+                    $isupdated=$livre->updateNbfois($nb,$dis,$numlivre);
+               }
+          }
      }
-
+     
      if(!$isposted AND !$isupdated){
           throw new Exception("Errer while posting pret");
      }else{

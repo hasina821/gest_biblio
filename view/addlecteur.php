@@ -4,15 +4,15 @@
                <form class="w-25 mx-auto mt-5 " action="index.php?action=posting/lecteur" method="post">
                     <div class="form-group">
                          <label for="Numero_livre">Numéro</label>
-                         <input type="text" class="form-control"  placeholder="Numéro lecteur">
+                         <input type="text" class="form-control" name="numlect"  placeholder="LECT00." required>
                     </div>
                     <div class="form-group">
                          <label for="nom">Nom:</label>
-                         <input type="text"  name="nom" class="form-control" id="nom" placeholder="Nom">
+                         <input type="text"  name="nom" class="form-control" id="nom" placeholder="Nom" required>
                     </div>
                          <div class="form-group">
                          <label for="prenom">Prenom:</label>
-                         <input type="text"  name="prenom" class="form-control" id="prenom" placeholder="Prenom">
+                         <input type="text"  name="prenom" class="form-control" id="prenom" placeholder="Prenom" required>
                     </div>
                     <button type="submit"
                     name="submit" class="btn btn-primary" style="margin-top: 25px; margin-bottom:20px ; float:right;">Ajouter</button>

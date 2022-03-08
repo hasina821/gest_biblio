@@ -11,9 +11,6 @@
             </div>
           <section class="w-100" id="tableau">
             <h2 class="text-dark x text-center bg-primary">LISTE DE LECTEUR</h2>
-            <form action="">
-              <input type="text" placeholder="Numero"> <input placeholder="Nom" type="text"> <label class="text-dark" for=""><button class="btn btn-primary">Rechercher</button></label>
-            </form>
             <table class="table table-striped ">
               <thead>
                 <tr>
@@ -29,12 +26,12 @@
                 while($lis=$list->fetch()){
                 echo <<<LECTEUR
                 <tr>
-                  <th scope="row">{$lis['id']}</th>
+                  <th scope="row">{$lis['numlect']}</th>
                   <td>{$lis['nom']}</td>
                   <td>{$lis['prenom']}</td>
-                  <td><a href="index.php?action=view/listepret/{$lis['id']}"><button class="btn btn-success">LISTE DE PRET</button></a></td>
+                  <td><a href="index.php?action=view/listepret/{$lis['numlect']}"><button class="btn btn-success">LISTE DE PRET</button></a></td>
                   <td class="text-center">
-                   <a href="index.php?action=updating/lecteur/{$lis['id']}"><i class="material-icons" style="font-size:36px;color:rgb(13, 111, 141);cursor: pointer;">mode_edit</i></a> 
+                   <a href="index.php?action=updating/lecteur/{$lis['numlect']}"><i class="material-icons" style="font-size:36px;color:rgb(13, 111, 141);cursor: pointer;">mode_edit</i></a> 
                    <a href="index.php?action=delete/lecteur/{$lis['id']}"> <i  class="material-icons" style="font-size:36px;color:red;cursor: pointer;">delete</i>
                   </td></a>
                 </tr>

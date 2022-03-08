@@ -15,20 +15,23 @@
                          </select>
                     </div>
                     <div class="form-group">
+                              <label for="titre">Num_du livre:</label>
+                              <input type="text"  name="numlivre" class="form-control" id="tittre" placeholder="L001" required>
+                    </div>
+                    <div class="form-group">
                               <label for="titre">Titre:</label>
-                              <input type="text"  name="titre" class="form-control" id="tittre">
+                              <input type="text"  name="titre" class="form-control" id="tittre" required>
                     </div>
                     <div class="form-group">
                          <label for="auteur">Auteur:</label>
-                         <input type="text"  name="auteur" class="form-control" id="auteur">
+                         <input type="text"  name="auteur" class="form-control" id="auteur" required>
                     </div>
                     <div class="form-group">
                               <label for="auteur">Date_edition:</label>
-                              <input type="text"  name="date_edition" class="form-control" id="date_edition" placeholder="YY-MM-DD">
+                              <input type="text"  name="date_edition" class="form-control" id="date_edition" placeholder="YY-MM-DD" required>
                     </div>
                     <button type="submit" class="btn btn-primary mt-4" name="submit">Ajouter</button>
                </form>
-               
           </div>
      </div>
 

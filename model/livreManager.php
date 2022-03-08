@@ -5,27 +5,37 @@ class LivreManager extends Manager{
           $res=$bdd->query("SELECT * FROM LIVRE");
           return $res;
      }
-     public function addLivre($designation,$titre,$auteur,$date_edition){
+     public function addLivre($numlivre,$designation,$titre,$auteur,$date_edition){
           $bdd=$this->dbConnect();
-          $sql="INSERT INTO LIVRE(designation,titre,auteur,date_edition) VALUES(?,?,?,?)";
+          $sql="INSERT INTO LIVRE(numlivre,designation,titre,auteur,date_edition) VALUES(?,?,?,?,?)";
           $restat=$bdd->prepare($sql);
-          $isposted=$restat->execute(array($designation,$titre,$auteur,$date_edition));
+          $isposted=$restat->execute(array($numlivre,$designation,$titre,$auteur,$date_edition));
 
           return $isposted;
      }
-     public function getLivre($id){
+     public function getLivre($numlivre){
           $db = $this->dbConnect();
-          $req = $db->prepare('SELECT  *FROM LIVRE WHERE id = ?');
-          $req->execute(array($id));
+          $req = $db->prepare('SELECT  *FROM LIVRE WHERE numlivre = ?');
+          $req->execute(array($numlivre));
           $livre = $req->fetch();
   
           return $livre;
      }
-     public function updateLivre($designation,$titre,$auteur,$date_edition,$id){
+     public function updateLivre($numlivre,$designation,$titre,$auteur,$date_edition,$id){
           $bdd=$this->dbConnect();
-          $sql="UPDATE  LIVRE SET designation=?,titre=?,auteur=?,date_edition=? WHERE id=?";
+          $sql="UPDATE  LIVRE SET 
+          numlivre=?,designation=?,titre=?,auteur=?,date_edition=? WHERE id=?";
           $restat=$bdd->prepare($sql);
-          $isupdated=$restat->execute(array($designation,$titre,$auteur,$date_edition,$id));
+          $isupdated=$restat->execute(array($numlivre,$designation,$titre,$auteur,$date_edition,$id));
+
+          return $isupdated;
+     }
+     public function retourlivre($disponibilite,$numlivre){
+          $bdd=$this->dbConnect();
+          $sql="UPDATE  LIVRE SET 
+          disponibilite=? WHERE numlivre=?";
+          $restat=$bdd->prepare($sql);
+          $isupdated=$restat->execute(array($disponibilite,$numlivre));
 
           return $isupdated;
      }
@@ -38,13 +48,27 @@ class LivreManager extends Manager{
           return $isdeleted;
 
      }
-     public function updateNbfois($nb,$dispo,$id){
+     public function updateNbfois($nb,$dispo,$numlivre){
           $bdd=$this->dbConnect();
-          $sql="UPDATE  LIVRE SET nbfoisprete=?,disponibilite=? WHERE id=?";
+          $sql="UPDATE  LIVRE SET nbfoisprete=?,disponibilite=? WHERE numlivre=?";
           $restat=$bdd->prepare($sql);
-          $isupdated=$restat->execute(array($nb,$dispo,$id));
+          $isupdated=$restat->execute(array($nb,$dispo,$numlivre));
 
           return $isupdated;
 
+     }
+     public function getLivreByauteur($auteur){
+          $db = $this->dbConnect();
+          $req = $db->prepare('SELECT  * FROM LIVRE WHERE auteur = ?');
+          $req->execute(array($auteur));
+  
+          return $req;
+     }
+     public function getLivreBytitle($titre){
+          $db = $this->dbConnect();
+          $req = $db->prepare('SELECT  * FROM LIVRE WHERE titre = ?');
+          $req->execute(array($titre));
+          
+          return $req;
      }
 }

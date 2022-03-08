@@ -28,7 +28,7 @@
                       }
                       echo <<<SITUATION
                       <tr>
-                        <th scope="row">{$livre['id']}</th>
+                        <th scope="row">{$livre['numlivre']}</th>
                         <td>{$livre['designation']}</td>
                         <td>{$livre['auteur']}</td>
                         <td>{$livre['date_edition']}</td>

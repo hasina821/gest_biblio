@@ -12,9 +12,11 @@
                 </div>
             </div>
           <section class="w-100" id="tableau">
-            <h2 class="text-dark x">LIVRE</h2>
-            <form action="">
-              <input type="text" placeholder="auteur"> <input placeholder="titre" type="text"> <label class="text-dark" for=""><button class="btn btn-primary">Rechercher</button></label>
+            <h2 class="text-dark x text-center bg-primary">LISTE DE LIVRE</h2>
+            <form method="post" action="index.php?action=view/livres" >
+              <input type="text" name="auteur" placeholder="auteur"/> 
+              <input   type="text" name="titre" placeholder="titre"/> 
+              <input type="submit" class="btn btn-primary" value="Rechercher"/>
             </form>
             <table class="table table-striped ">
               <thead>
@@ -38,14 +40,14 @@
                 }
                 echo <<<LIVRE
                 <tr>
-                  <th scope="row">{$livre['id']}</th>
+                  <th scope="row">{$livre['numlivre']}</th>
                   <td>{$livre['titre']}</td>
                   <td>{$livre['auteur']}</td>
                   <td>{$livre['date_edition']}</td>
                   <td>{$status}</td>
-                  <td><button class="btn btn-success">Voir</button></td>
+                  <td><a href="index.php?action=view/livre/{$livre['numlivre']}"><button class="btn btn-success">voir</button></a></td>
                   <td class="text-center">
-                   <a href="index.php?action=updating/livre/{$livre['id']}"><i  class="material-icons" style="font-size:36px;color:rgb(13, 111, 141);cursor: pointer;">mode_edit</i></a>
+                   <a href="index.php?action=updating/livre/{$livre['numlivre']}"><i  class="material-icons" style="font-size:36px;color:rgb(13, 111, 141);cursor: pointer;">mode_edit</i></a>
                   <a href="index.php?action=delete/livre/{$livre['id']}"><i class="material-icons" style="font-size:36px;color:red;cursor: pointer;">delete</i></a>
                   </td>
                 </tr>

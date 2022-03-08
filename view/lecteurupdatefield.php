@@ -4,7 +4,7 @@
                <form class="w-25 mx-auto mt-5 " action="index.php?action=update/lecteur/<?=$lect['id'];?>" method="post">
                     <div class="form-group">
                          <label for="Numero_livre">Numéro</label>
-                         <input value=<?=$lect['id'];?> type="text" class="form-control"  placeholder="Numéro lecteur">
+                         <input value=<?=$lect['numlect'];?> type="text" name="numlect" class="form-control"  placeholder="Numéro lecteur">
                     </div>
                     <div class="form-group">
                          <label for="nom">Nom:</label>

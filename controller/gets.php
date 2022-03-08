@@ -19,6 +19,27 @@ function listLivre(){
 
      require('view/livreview.php');
 }
+function getlivreByauteur($auteur){
+     $livre=new LivreManager();
+     $list=$livre->getLivreByauteur($auteur);
+     require('view/livreview.php');
+}
+
+function getlivreBytitle($titre){
+     $livre=new LivreManager();
+     $list=$livre->getLivreBytitle($titre);
+     require('view/livreview.php');
+}
+
+function onlivre($numlivre){
+     $livre=new LivreManager();
+     $list=$livre->getLivre($numlivre);
+     require('view/onlivre.php');
+}
+
+
+
+
 
 /*----------------------------------prets-------------------------------------------------------------------- */
 
@@ -36,18 +57,18 @@ function situationLivre(){
 
 /*----------------------------------listepret------------------------------------------- */
 
-function listePret($id){
+function listePret($numlect){
      $lecteur=new LecteurManager();
-     $lect=$lecteur->getLecteur($id);
+     $lect=$lecteur->getLecteur($numlect);
 
-     $list=$lecteur->getListpret($id);
+     $list=$lecteur->getListpret($numlect);
      require('view/listpretview.php');
 }
-function genPdf($id){
+function genPdf($numlect){
      $lecteur=new LecteurManager();
-     $lect=$lecteur->getLecteur($id);
+     $lect=$lecteur->getLecteur($numlect);
 
-     $list=$lecteur->getListpret($id);
+     $list=$lecteur->getListpret($numlect);
      require('view/genpdf.php');
 }
 

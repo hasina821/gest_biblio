@@ -3,16 +3,12 @@
           <div class="mx-auto col-10 bg-dark container" id="main" style="opacity: 0.9;">
                <form class="w-25 mx-auto mt-5" action="index.php?action=update/pret/<?=$pre['id'];?>" method="post">
                     <div class="form-group">
-                         <label for="Numero">Numéro prêt</label>
-                         <input   value=<?=$pre['id'];?> type="text" class="form-control"  placeholder="Numéro prêt">
-                    </div>
-                    <div class="form-group">
                          <label for="Numero lecteur">Numéro lecteur</label>
-                         <input name='id_lecteur' value=<?=$pre['id_lecteur'];?> type="text" class="form-control"  placeholder="Numéro lecteur">
+                         <input name='numlecteur' value=<?=$pre['numlecteur'];?>  type="text" class="form-control"  placeholder="Numéro lecteur">
                     </div>
                     <div class="form-group">
                          <label for="Numero_livre">Numéro livre</label>
-                         <input name='id_livre' value=<?=$pre['id_livre'];?> type="text" class="form-control" placeholder="Numéro livre">
+                         <input name='numlivre' value=<?=$pre['numlivre'];?> type="text" class="form-control" placeholder="Numéro livre">
                     </div>
                     <div class="form-group">
                          <label for="DateP">Dates de prêt</label>

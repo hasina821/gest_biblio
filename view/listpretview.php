@@ -29,7 +29,7 @@
                       ?>
                     </tbody>
                   </table>
-                 <a href="index.php?action=view/genpdf/<?=$lect['id']?>"><button type="submit" class="btn btn-success" style="margin-top: 25px;margin-bottom:20px ;float:right;">Generer un pdf</button></a>
+                 <a href="index.php?action=view/genpdf/<?=$lect['numlect']?>"><button type="submit" class="btn btn-success" style="margin-top: 25px;margin-bottom:20px ;float:right;">Generer un pdf</button></a>
           </div>
 <?php $content = ob_get_clean(); ?>
 

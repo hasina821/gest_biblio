@@ -9,27 +9,27 @@ class LecteurManager extends Manager{
           $res=$bdd->query("SELECT * FROM LECTEUR");
           return $res;
      }
-     public function postLecteur($nom,$prenom){
+     public function postLecteur($numlect,$nom,$prenom){
           $bdd=$this->dbConnect();
-          $sql="INSERT INTO LECTEUR(nom,prenom) VALUES(?,?)";
+          $sql="INSERT INTO LECTEUR(numlect,nom,prenom) VALUES(?,?,?)";
           $restat=$bdd->prepare($sql);
-          $isposted=$restat->execute(array($nom,$prenom));
+          $isposted=$restat->execute(array($numlect,$nom,$prenom));
 
           return $isposted;
      }
-     public function getLecteur($id){
+     public function getLecteur($numlect){
           $db = $this->dbConnect();
-          $req = $db->prepare('SELECT  * FROM LECTEUR WHERE id = ?');
-          $req->execute(array($id));
+          $req = $db->prepare('SELECT  * FROM LECTEUR WHERE numlect = ?');
+          $req->execute(array($numlect));
           $lect = $req->fetch();
   
           return $lect;
      }
-     public function updateLecteur($nom,$prenom,$id){
+     public function updateLecteur($numlect,$nom,$prenom,$id){
           $bdd=$this->dbConnect();
-          $sql="UPDATE  LECTEUR SET nom=?,prenom=? WHERE id=?";
+          $sql="UPDATE  LECTEUR SET numlect=?, nom=?,prenom=? WHERE id=?";
           $restat=$bdd->prepare($sql);
-          $isupdated=$restat->execute(array($nom,$prenom,$id));
+          $isupdated=$restat->execute(array($numlect,$nom,$prenom,$id));
 
           return $isupdated;
 
@@ -43,10 +43,10 @@ class LecteurManager extends Manager{
           return $isdeleted;
 
      }
-     public function getListpret($id){
+     public function getListpret($numlect){
           $db = $this->dbConnect();
-          $req = $db->prepare('SELECT `LECTEUR`.id,nom,prenom,designation,auteur,date_edition,date_pret FROM `LECTEUR` INNER JOIN `PRET` ON `LECTEUR`.id=`PRET`.id_lecteur INNER JOIN `LIVRE` ON `LIVRE`.id=`PRET`.id_livre WHERE `LECTEUR`.id=?');
-          $req->execute(array($id));
+          $req = $db->prepare('SELECT `LECTEUR`.numlect,nom,prenom,designation,auteur,date_edition,date_pret FROM `LECTEUR` INNER JOIN `PRET` ON `LECTEUR`.numlect=`PRET`.numlecteur INNER JOIN `LIVRE` ON `LIVRE`.numlivre=`PRET`.numlivre WHERE `LECTEUR`.numlect=?');
+          $req->execute(array($numlect));
           $listpret = $req->fetchAll();
   
           return $listpret;

@@ -15,6 +15,10 @@
                     </div>
                     <div class="form-group">
                               <label for="titre">Titre:</label>
+                              <input type="text" value=<?php echo $liv['numlivre'];?> name="numlivre" class="form-control" id="tittre">
+                    </div>
+                    <div class="form-group">
+                              <label for="titre">Titre:</label>
                               <input type="text" value=<?php echo $liv['titre'];?> name="titre" class="form-control" id="tittre">
                     </div>
                     <div class="form-group">
@@ -25,7 +29,7 @@
                               <label for="auteur">Date_edition:</label>
                               <input type="text" value=<?php echo $liv['date_edition'];?> name="date_edition" class="form-control" id="date_edition" placeholder="YY-MM-DD">
                     </div>
-                    <button type="submit" class="btn btn-primary mt-4" name="submit">Ajouter</button>
+                    <button type="submit" class="btn btn-primary mt-4" name="submit">Mettre à jour</button>
                </form>
                
           </div>

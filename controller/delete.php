@@ -33,9 +33,13 @@ function deleteLecteur($id){
 }
 /*-----------------------pret--------------------------------------------------*/
 
-function deletePret($id){
+function deletePret($numlivre,$id){
      $pret=new PretManager();
      $isdeleted=$pret->deletePret($id);
+     $livre=new LivreManager();
+     $dispo=1;
+     $isupdatedlivre=$livre->retourlivre($dispo,$numlivre);
+
      if(!$isdeleted){
           throw new Exception("Error while deleting pret");
           
